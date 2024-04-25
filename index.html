@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Italian Restaurant</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #ffcccb, #ff9999);
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            text-align: center;
+            font-size: 36px;
+            color: #333;
+        }
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .menu-item span {
+            font-weight: bold;
+        }
+        .cart {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .cart-item span {
+            font-weight: bold;
+        }
+        .checkout-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #ff6347;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .checkout-btn:hover {
+            background-color: #ff4500;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Italian Restaurant Menu</h1>
+        <div class="menu-item">
+            <span>Pizza Margherita</span>
+            <span>$12.99</span>
+            <button onclick="addToCart('Pizza Margherita', 12.99)">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+            <span>Spaghetti Carbonara</span>
+            <span>$14.99</span>
+            <button onclick="addToCart('Spaghetti Carbonara', 14.99)">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+            <span>Tiramisu</span>
+            <span>$8.99</span>
+            <button onclick="addToCart('Tiramisu', 8.99)">Add to Cart</button>
+        </div>
+        <div class="cart">
+            <h2>Cart</h2>
+            <div class="cart-item">
+                <span>Pizza Margherita</span>
+                <span>$12.99</span>
+            </div>
+            <div class="cart-item">
+                <span>Spaghetti Carbonara</span>
+                <span>$14.99</span>
+            </div>
+            <div class="cart-item">
+                <span>Tiramisu</span>
+                <span>$8.99</span>
+            </div>
+            <a href="#" class="checkout-btn">Checkout</a>
+        </div>
+    </div>
+
+    <script>
+        const cart = [];
+
+        function addToCart(itemName, price) {
+            cart.push({ name: itemName, price: price });
+            updateCart();
+        }
+
+        function updateCart() {
+            const cartElement = document.querySelector('.cart');
+            cartElement.innerHTML = '<h2>Cart</h2>';
+            let total = 0;
+            cart.forEach(item => {
+                cartElement.innerHTML += `
+                    <div class="cart-item">
+                        <span>${item.name}</span>
+                        <span>$${item.price.toFixed(2)}</span>
+                    </div>
+                `;
+                total += item.price;
+            });
+            cartElement.innerHTML += `
+                <div class="cart-item">
+                    <span>Total</span>
+                    <span>$${total.toFixed(2)}</span>
+                </div>
+                <a href="#" class="checkout-btn">Checkout</a>
+            `;
+        }
+    </script>
+</body>
+</html>
