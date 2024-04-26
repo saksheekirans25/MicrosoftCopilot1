@@ -120,6 +120,7 @@ const totalPriceElement = document.getElementById('total-price');
 const checkoutButton = document.getElementById('checkout');
 
 let totalPrice = 0;
+const cartItems = []; // Array to store selected items
 
 addToCartButtons.forEach((button) => {
     button.addEventListener('click', () => {
@@ -127,13 +128,31 @@ addToCartButtons.forEach((button) => {
         const itemName = menuItem.querySelector('.item-name').textContent;
         const itemPrice = parseFloat(menuItem.querySelector('.item-price').textContent.slice(1));
 
-        // Add item to cart (you can customize this logic)
-        // For now, let's assume we add the item to an array
-        // and update the total price
-        totalPrice += itemPrice;
-        totalPriceElement.textContent = `$${totalPrice.toFixed(2)}`;
+        // Add item to cart
+        cartItems.push({ name: itemName, price: itemPrice });
+
+        // Update the cart display
+        updateCartDisplay();
     });
 });
+
+function updateCartDisplay() {
+    let cartHTML = '';
+    totalPrice = 0;
+
+    cartItems.forEach((item) => {
+        cartHTML += `
+            <div class="cart-item">
+                <span class="item-name">${item.name}</span>
+                <span class="item-price">$${item.price.toFixed(2)}</span>
+            </div>
+        `;
+        totalPrice += item.price;
+    });
+
+    totalPriceElement.textContent = `$${totalPrice.toFixed(2)}`;
+    document.getElementById('cart').innerHTML = cartHTML;
+}
 
 checkoutButton.addEventListener('click', () => {
     // Display a thank-you message and show the total price
