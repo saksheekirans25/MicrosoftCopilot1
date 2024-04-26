@@ -3,173 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ristorante Bella Italia</title>
+    <title>La Trattoria Bella - Italian Restaurant</title>
+   
 </head>
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(to bottom, #ffcccb, #ff9999);
-            margin: 0;
-            padding: 0;
-        }
-        .header {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px 10px 0 0;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-        }
-        h1 {
-            text-align: center;
-            font-size: 36px;
-            color: #333;
-            margin: 0;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 0 0 10px 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-        }
-        .menu-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding: 10px;
-            border-bottom: 1px solid #ddd;
-        }
-        .menu-item span {
-            font-weight: bold;
-        }
-        .menu-item img {
-            width: 50px;
-            height: 50px;
-            object-fit: cover;
-            margin-right: 10px;
-        }
-        .cart {
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #f9f9f9;
-            border-radius: 5px;
-        }
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-        }
-        .cart-item span {
-            font-weight: bold;
-        }
-        .checkout-btn {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            background-color: #ff6347;
-            color: #fff;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-        .checkout-btn:hover {
-            background-color: #ff4500;
-        }
+        /* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #f8f8f8;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 24px;
+    margin: 0;
+}
+
+#search {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+}
+
+.menu-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+#total-price {
+    font-weight: bold;
+}
+
+#checkout {
+    background-color: #ff6347;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
     </style>
 <body>
-    <div class="header">
-        <h1>Ristorante Bella Italia</h1>
-    </div>
-    <div class="container">
+    <header>
+        <h1>La Trattoria Bella</h1>
+        <input type="text" id="search" placeholder="Search...">
+    </header>
+    <section id="menu">
+        <!-- Menu items -->
         <div class="menu-item">
-            <img src="pizza.jpg" alt="Pizza Margherita">
-            <span>Pizza Margherita</span>
-            <span>$12.99</span>
-            <button onclick="addToCart('Pizza Margherita', 12.99)">Add to Cart</button>
+            <span class="item-name">Spaghetti Carbonara</span>
+            <span class="item-price">$12.99</span>
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+        <!-- Add more menu items -->
+        <div class="menu-item">
+            <span class="item-name">Margherita Pizza</span>
+            <span class="item-price">$10.99</span>
+            <button class="add-to-cart">Add to Cart</button>
         </div>
         <div class="menu-item">
-            <img src="spaghetti.jpg" alt="Spaghetti Carbonara">
-            <span>Spaghetti Carbonara</span>
-            <span>$14.99</span>
-            <button onclick="addToCart('Spaghetti Carbonara', 14.99)">Add to Cart</button>
+            <span class="item-name">Chicken Alfredo</span>
+            <span class="item-price">$14.99</span>
+            <button class="add-to-cart">Add to Cart</button>
         </div>
         <div class="menu-item">
-            <img src="tiramisu.jpg" alt="Tiramisu">
-            <span>Tiramisu</span>
-            <span>$8.99</span>
-            <button onclick="addToCart('Tiramisu', 8.99)">Add to Cart</button>
+            <span class="item-name">Lasagna Bolognese</span>
+            <span class="item-price">$12.49</span>
+            <button class="add-to-cart">Add to Cart</button>
         </div>
-        <div class="cart">
-            <h2>Cart</h2>
-            <div class="cart-item">
-                <span>Pizza Margherita</span>
-                <span>$12.99</span>
-                <button onclick="removeFromCart('Pizza Margherita', 12.99)">Remove</button>
-            </div>
-            <div class="cart-item">
-                <span>Spaghetti Carbonara</span>
-                <span>$14.99</span>
-                <button onclick="removeFromCart('Spaghetti Carbonara', 14.99)">Remove</button>
-            </div>
-            <div class="cart-item">
-                <span>Tiramisu</span>
-                <span>$8.99</span>
-                <button onclick="removeFromCart('Tiramisu', 8.99)">Remove</button>
-            </div>
-            <div class="cart-item">
-                <span>Total</span>
-                <span id="totalAmount">$0.00</span>
-            </div>
-            <button onclick="checkout()">Checkout</button>
+        <div class="menu-item">
+            <span class="item-name">Tiramisu</span>
+            <span class="item-price">$6.99</span>
+            <button class="add-to-cart">Add to Cart</button>
         </div>
-    </div>
-
-    <script>
-        const cart = [];
-
-        function addToCart(itemName, price) {
-            cart.push({ name: itemName, price: price });
-            updateCart();
-        }
-
-        function removeFromCart(itemName, price) {
-            const index = cart.findIndex(item => item.name === itemName && item.price === price);
-            if (index !== -1) {
-                cart.splice(index, 1);
-                updateCart();
-            }
-        }
-
-        function updateCart() {
-            const cartElement = document.querySelector('.cart');
-            cartElement.innerHTML = '<h2>Cart</h2>';
-            let total = 0;
-            cart.forEach(item => {
-                cartElement.innerHTML += `
-                    <div class="cart-item">
-                        <span>${item.name}</span>
-                        <span>$${item.price.toFixed(2)}</span>
-                    </div>
-                `;
-                total += item.price;
-            });
-            cartElement.innerHTML += `
-                <div class="cart-item">
-                    <span>Total</span>
-                    <span id="totalAmount">$${total.toFixed(2)}</span>
-                </div>
-                <button onclick="checkout()">Checkout</button>
-            `;
-        }
-
-        function checkout() {
-            const totalAmount = document.getElementById('totalAmount').textContent;
-            alert(`Thank you for your order! Your total amount is ${totalAmount}.`);
-        }
-    </script>
+        <div class="menu-item">
+            <span class="item-name">Caprese Salad</span>
+            <span class="item-price">$8.49</span>
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+        <!-- Add more menu items if needed -->
+    </section>
+    <section id="cart">
+        <!-- Cart items and total -->
+        <div class="cart-item">
+            <span class="item-name">Spaghetti Carbonara</span>
+            <span class="item-price">$12.99</span>
+        </div>
+        <!-- Add more cart items -->
+        <div class="cart-total">
+            <span>Total:</span>
+            <span id="total-price">$0.00</span>
+        </div>
+        <button id="checkout">Checkout</button>
+    </section>
+    
 </body>
-</html>
+    <script>
+        // script.js
+const addToCartButtons = document.querySelectorAll('.add-to-cart');
+const totalPriceElement = document.getElementById('total-price');
+const checkoutButton = document.getElementById('checkout');
 
-           
+let totalPrice = 0;
+
+addToCartButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+        const menuItem = button.parentElement;
+        const itemName = menuItem.querySelector('.item-name').textContent;
+        const itemPrice = parseFloat(menuItem.querySelector('.item-price').textContent.slice(1));
+
+        // Add item to cart (you can customize this logic)
+        // For now, let's assume we add the item to an array
+        // and update the total price
+        totalPrice += itemPrice;
+        totalPriceElement.textContent = `$${totalPrice.toFixed(2)}`;
+    });
+});
+
+checkoutButton.addEventListener('click', () => {
+    // Display a thank-you message and show the total price
+    alert(`Thank you for your order! Total: $${totalPrice.toFixed(2)}`);
+});
+
+    </script>
+</html>
